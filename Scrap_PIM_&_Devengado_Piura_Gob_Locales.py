@@ -2,27 +2,19 @@
 # coding: utf-8
 
 # In[1]:
-
-
 import requests
 import re
 import pandas as pd
 from bs4 import BeautifulSoup
 
-
 # In[2]:
-
-
 r= requests.get("https://apps5.mineco.gob.pe/transparencia/mensual/Navegar_6.aspx?_uhc=yes&0=&24=6-2-6&1=M&37=M&5=20&6=01&7=301212&23=1&31=&y=2019&cpage=1&psize=3000")
 q= requests.get("https://apps5.mineco.gob.pe/transparencia/mensual/Navegar_6.aspx?_uhc=yes&0=&24=6-2-6&1=M&37=M&5=20&6=01&7=301212&31=&y=2019&cpage=1&psize=3000")
 soup = BeautifulSoup(r.text,'lxml')
 htmltable = soup.find('table', { 'class' : 'Data' })
 htmltable2=htmltable.findAll('tr')
 
-
 # In[3]:
-
-
 E1=[]
 E2=[]
 E3=[]
@@ -54,7 +46,7 @@ E30=[]
 E31=[]
 E32=[]
 Meses=[6]
-Años=[2020]
+Años=[2025]
 Generica=['6-2-6']
 Provincias=['01','02','03','04','05','06','07','08']
 Municipalidades_1=['301529','301530','301531','301532','301533','301534','301535','301536','301537','301849'] 
@@ -66,10 +58,7 @@ Municipalidades_6=['301573','301574','301575','301576','301577','301578','301579
 Municipalidades_7=['301581','301582','301583','301584','301585','301586']
 Municipalidades_8=['301587','301588','301589','301590','301591','301592']
 
-
 # In[4]:
-
-
 for prov in Provincias:
     if prov=='01':
         Provincia="Piura"
@@ -538,16 +527,10 @@ for prov in Provincias:
             print(len(E10))
             print(len(E11))
 
-
 # In[5]:
-
-
 A[0:6]
 
-
 # In[6]:
-
-
 df = pd.DataFrame(columns=['Código', 'Proyecto','Completo','Departamento','Provincia','Nivel de Gobierno','Código Nivel de Gobierno','Nombre de Nivel de Gobierno','Año','Mes','Genérica','Dv_1','ID'])
 df['Completo']= E12
 df['Código'] = E1
@@ -564,10 +547,7 @@ df['Genérica'] = E16
 df['Código Nivel de Gobierno']=E17
 df.head()
 
-
 # In[7]:
-
-
 for prov in Provincias:
     if prov=='01':
         Provincia="Piura"
@@ -1010,10 +990,7 @@ for prov in Provincias:
         print(len(E20))
         print(len(E32))
 
-
 # In[8]:
-
-
 df2 = pd.DataFrame(columns=['Código','Proyecto','Completo','Departamento','Provincia','Nivel de Gobierno','Código Nivel de Gobierno','Nombre de Nivel de Gobierno','Año','Genérica','PIM_1','ID'])
 df2['Código'] = E18
 df2['Código Nivel de Gobierno'] = E19
@@ -1030,27 +1007,12 @@ df2['PIM_1'] = E32
 
 df2.head()
 
-
 # In[9]:
-
-
 df2.to_excel("PIU_LOC_PIM1_2020.xlsx",index=False)
 
-
 # In[10]:
-
-
 df.to_excel("PIU_LOC_DV1_2020.xlsx",index=False)
 
-
 # In[ ]:
 
-
-
-
-
 # In[ ]:
-
-
-
-
